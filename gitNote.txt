@@ -1,0 +1,50 @@
+1、CheckOut   https://my.oschina.net/u/920274/blog/3025300
+作用综述如下：
+（1）.切换或者新建分支。
+（2）.将暂存区或者指定commit内容覆盖到工作区。
+    （1）.用暂存区内容覆盖工作区内容：
+	 git checkout -- readme.txt antzone.txt  or  git -- checkout . 
+	这里只是再git add file 后，然后commit，使用checkout可以恢复到add file之前的状态。
+	但是已经修改的部分只会删除。
+    （2）.用指定commit提交的内容覆盖工作区:
+	git log --oneline
+	git checkout fce75b8 -- shijinshao.txt
+代码回滚：git reset、git checkout和git revert区别和联系
+	https://www.cnblogs.com/houpeiyong/p/5890748.html
+	（1） git reset  
+		--soft – 缓存区和工作目录都不会被改变
+		--mixed – 默认选项。缓存区和你指定的提交同步，但工作目录不受影响
+		--hard – 缓存区和工作目录都同步到你指定的提交
+	（2） git checkout
+		提价层面 切换分支  git checkout branchName or git checkout -b newBranchName
+		文件层面 切换HEAD到某个commit   git log --oneline  git checkout hashValue fileName
+			此时HEAD处于分离状态，需要新建分支来继续开发，之前的commit会被删除；
+			也可以用git revert 来修改制定的commit，这样就不用新建分支了。由此看来git revert更
+			适合在主分支上进行修改，git checkout 适合在分支上修改。
+	（3） git revert
+		git log --oneline
+		git revert hashValue   需要重新commit，文件会有冲突，需要解决冲突后重新commit;
+
+代码合并：merge rebase
+	（1） git rebase branchName  会合并两个分支的历史commit记录  
+		git rebase master  处理conflict，然后git rebase --continue
+	（2） git merge branchName   只是合并代码
+	
+合并commit：git rebase -i commitID  or git commit --amend 修改上一次提交
+	pick : 保留这个commit
+	squash ：保留这个commit，但是会将这个commit融入到上一个commit
+	fixup： 同squash，但是会丢弃掉log message
+
+拉取的实现：pull = fetch + merge
+
+cherry-pick:将某个commit添加到另一个分支,适用于本地，
+https://blog.csdn.net/qq_35432904/article/details/107232691
+	git cherry-pick commitID 转移某个commit 
+	git cherry-pick commitID1 commitID 转移多个commit 
+	git cherry-pick commitID1..commitID 转移连续多个commit
+	git cherry-pick branchName 转移某分支最新的commit 
+
+fork 后需要clone仓库到本地
+
+		
+

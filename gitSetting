@@ -1,0 +1,19 @@
+1. 一开始使用git时，可能要使用到相关的密钥
+
+生成秘钥的方法：
+(1)ssh-keygen -t rsa -C "github注册的邮箱名"
+
+随后一直enter就好，提示输入密码可输可不输
+
+(2)cat ~/.ssh/id_rsa.pub(生成的这个东西用于在github上 添加秘钥)
+
+头像 -> settings -> SSH&GPGkeys
+
+（3） clip < path/id_rsa.pub
+2.本地与远程库进行关联
+git remote add origin git@github.com:chenchaoqi2018/GitNote.git
+git remote -v 
+
+3.代码更新
+git pull origin master
+
